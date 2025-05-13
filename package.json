@@ -1,0 +1,11 @@
+{
+  "name": "cloud-gaming-starter",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^29.1.0"
+  }
+}

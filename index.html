@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Cloud Gaming Launcher</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    input, button { margin: 5px; padding: 10px; }
+  </style>
+</head>
+<body>
+  <h1>🎮 Cloud Gaming Launcher</h1>
+  <button id="installSunshine">Install Sunshine</button><br><br>
+  <input id="serverIP" type="text" placeholder="Enter Server IP">
+  <input id="gameName" type="text" placeholder="Enter Game Name">
+  <button id="launchGame">Launch Game</button>
+  <p id="output"></p>
+  <script>
+    const installBtn = document.getElementById('installSunshine');
+    const launchBtn = document.getElementById('launchGame');
+    const output = document.getElementById('output');
+    installBtn.onclick = async () => {
+      try {
+        const result = await window.electronAPI.installSunshine();
+        output.textContent = result;
+      } catch (err) {
+        output.textContent = `Error: ${err}`;
+      }
+    };
+    launchBtn.onclick = async () => {
+      const serverIP = document.getElementById('serverIP').value;
+      const gameName = document.getElementById('gameName').value;
+      try {
+        const result = await window.electronAPI.launchGame(serverIP, gameName);
+        output.textContent = result;
+      } catch (err) {
+        output.textContent = `Error: ${err}`;
+      }
+    };
+  </script>
+</body>
+</html>
